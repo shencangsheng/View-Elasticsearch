@@ -81,7 +81,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <!-- 不指定单元测试 -->
                     <skipTests>true</skipTests>
                 </configuration>
             </plugin>

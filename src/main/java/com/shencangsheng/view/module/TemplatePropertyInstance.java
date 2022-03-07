@@ -32,9 +32,10 @@ public class TemplatePropertyInstance extends AbstractPropertyInstance {
             new PropertyInstance("city", QueryPropertyEnum.GROUP,
                 new PropertyInstance("provinces", QueryPropertyEnum.KEYWORD))));
 
-        add("user_id", new PropertyInstance("user_id", AggregationPropertyEnum.CARDINALITY));
+        PropertyInstance userIdPropertyInstance = new PropertyInstance("user_id", AggregationPropertyEnum.CARDINALITY);
+        add("user_id", userIdPropertyInstance);
         add("user_name", new PropertyInstance("user_name", QueryPropertyEnum.WILDCARD));
         add("age", new PropertyInstance("age", QueryPropertyEnum.LONG));
-        add("gender", new PropertyInstance("gender", QueryPropertyEnum.KEYWORD, getProperties().get("user_id")).setAggregationType(AggregationPropertyEnum.TERMS_CARDINALITY));
+        add("gender", new PropertyInstance("gender", QueryPropertyEnum.KEYWORD, userIdPropertyInstance).setAggregationType(AggregationPropertyEnum.TERMS_CARDINALITY));
     }
 }

@@ -11,7 +11,6 @@
 package com.shencangsheng.view.mappings;
 
 import com.shencangsheng.view.mappings.enums.AggregationPropertyEnum;
-import com.shencangsheng.view.mappings.enums.QueryBoolEnum;
 import com.shencangsheng.view.mappings.enums.QueryPropertyEnum;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,7 +29,6 @@ public class PropertyInstance {
     private String key;
     private QueryPropertyEnum queryType;
     private AggregationPropertyEnum aggregationType;
-    private QueryBoolEnum bool = QueryBoolEnum.FILTER;
     private Integer minimumShouldMatch = 1;
     @Setter
     private PropertyInstance next;

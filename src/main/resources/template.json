@@ -1,0 +1,64 @@
+[
+  {
+    "module": "template",
+    "query": [
+      {
+        "key": "order_no",
+        "terms": [
+          "1",
+          "2"
+        ]
+      },
+      {
+        "key": "order_create_date",
+        "range": {
+          "lt": 1646662680887
+        }
+      },
+      {
+        "key": "countries",
+        "bucket": [
+          {
+            "key": "china",
+            "bucket": [
+              {
+                "key": "si_chuan",
+                "terms": [
+                  "cheng_du"
+                ]
+              }
+            ]
+          },
+          {
+            "key": "USA",
+            "bucket": [
+              {
+                "key": "AL",
+                "terms": [
+                  "Birmingham"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "user_name",
+        "terms": [
+          "zhang*"
+        ]
+      }
+    ]
+  },
+  {
+    "module": "nested",
+    "query": [
+      {
+        "key": "type",
+        "terms": [
+          "cancel"
+        ]
+      }
+    ]
+  }
+]

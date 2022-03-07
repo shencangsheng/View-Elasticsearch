@@ -12,6 +12,7 @@ package com.shencangsheng.view.query.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -25,7 +26,8 @@ import java.util.List;
  */
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class QueryInstance {
     private String module;
-    private List<AbstractQuery> query;
+    private List<Query> query;
 }

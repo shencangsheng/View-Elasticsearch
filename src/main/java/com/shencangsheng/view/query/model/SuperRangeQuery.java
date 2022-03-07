@@ -1,8 +1,8 @@
 /**
  * Copyright (C), 2015-2022, XXX有限公司
- * FileName: NumberRangeQuery
+ * FileName: AbstractRangeQuery
  * Author:   shencangsheng
- * Date:     2022/3/7 3:55 PM
+ * Date:     2022/3/7 3:54 PM
  * Description:
  * History:
  * <author>          <time>          <version>          <desc>
@@ -11,6 +11,7 @@
 package com.shencangsheng.view.query.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
@@ -21,8 +22,12 @@ import lombok.NoArgsConstructor;
  * @create 2022/3/7
  * @since 1.0.0
  */
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NumberRangeQuery extends AbstractRangeQuery<Number> {
-
+public class SuperRangeQuery<T extends Number> {
+    private T gt;
+    private T gte;
+    private T lt;
+    private T lte;
 }

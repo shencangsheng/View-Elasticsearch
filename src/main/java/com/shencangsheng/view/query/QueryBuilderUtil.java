@@ -10,7 +10,7 @@
  */
 package com.shencangsheng.view.query;
 
-import com.shencangsheng.view.query.model.AbstractRangeQuery;
+import com.shencangsheng.view.query.model.SuperRangeQuery;
 import org.elasticsearch.index.query.*;
 
 import java.util.Collection;
@@ -37,7 +37,7 @@ public class QueryBuilderUtil {
         return QueryBuilders.wildcardQuery(name, value);
     }
 
-    public static RangeQueryBuilder range(String name, AbstractRangeQuery range) throws Exception {
+    public static RangeQueryBuilder range(String name, SuperRangeQuery range) throws Exception {
         RangeQueryBuilder rangeQueryBuilder = QueryBuilders.rangeQuery(name);
         if (Objects.nonNull(range.getGt())) {
             rangeQueryBuilder.gt(range.getGt());
