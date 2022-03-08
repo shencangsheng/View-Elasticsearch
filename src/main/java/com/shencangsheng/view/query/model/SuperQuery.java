@@ -10,12 +10,11 @@
  */
 package com.shencangsheng.view.query.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.shencangsheng.view.mappings.enums.QueryBoolEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -28,10 +27,9 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Query {
+@JsonDeserialize(using = QueryDeserializer.class)
+public class SuperQuery<T> {
     private String key;
     private QueryBoolEnum boolType = QueryBoolEnum.FILTER;
-    private List terms;
-    private SuperRangeQuery<Number> range;
-    private List<Query> bucket;
+    private T value;
 }

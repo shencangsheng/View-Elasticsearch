@@ -1,8 +1,8 @@
 /**
  * Copyright (C), 2015-2022, XXX有限公司
- * FileName: QueryInstance
+ * FileName: RangeQuery
  * Author:   shencangsheng
- * Date:     2022/3/7 4:37 PM
+ * Date:     2022/3/8 9:46 AM
  * Description:
  * History:
  * <author>          <time>          <version>          <desc>
@@ -10,24 +10,14 @@
  */
 package com.shencangsheng.view.query.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.util.List;
-
 /**
  * 〈一句话功能简述〉<br>
  * 〈〉
  *
  * @author shencangsheng
- * @create 2022/3/7
+ * @create 2022/3/8
  * @since 1.0.0
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class QueryInstance {
-    private String module;
-    private List<SuperQuery> query;
+public class RangeQuery extends SuperQuery<SuperRangeQuery> {
+
 }

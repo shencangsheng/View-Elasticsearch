@@ -10,7 +10,8 @@
  */
 
 import cn.hutool.core.io.file.FileReader;
-import cn.hutool.json.JSONUtil;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shencangsheng.view.module.AbstractModuleInstance;
 import com.shencangsheng.view.module.NestedPropertyInstance;
 import com.shencangsheng.view.module.TemplatePropertyInstance;
@@ -38,7 +39,9 @@ public class QueryTest extends AbstractModuleInstance {
     public static void main(String[] args) throws Exception {
         FileReader templateJson = new FileReader("template.json");
         String queryJson = templateJson.readString();
-        List<QueryInstance> queryInstances = JSONUtil.toList(queryJson, QueryInstance.class);
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<QueryInstance> queryInstances = objectMapper.readValue(queryJson, new TypeReference<>() {
+        });
         BoolQueryBuilder boolQueryBuilder = BoolQueryBuilderFactory.boolQueryBuilderFactory(queryInstances, new QueryTest());
         System.out.println(boolQueryBuilder);
     }

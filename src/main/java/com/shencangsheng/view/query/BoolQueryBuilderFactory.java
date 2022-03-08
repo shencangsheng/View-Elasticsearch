@@ -14,8 +14,7 @@ import com.shencangsheng.view.mappings.AbstractPropertyInstance;
 import com.shencangsheng.view.mappings.PropertyInstance;
 import com.shencangsheng.view.mappings.enums.QueryBoolEnum;
 import com.shencangsheng.view.module.AbstractModuleInstance;
-import com.shencangsheng.view.query.model.Query;
-import com.shencangsheng.view.query.model.QueryInstance;
+import com.shencangsheng.view.query.model.*;
 import org.apache.lucene.search.join.ScoreMode;
 import org.elasticsearch.index.query.*;
 
@@ -41,7 +40,7 @@ public class BoolQueryBuilderFactory {
             if (propertyInstance.isNested()) {
                 boolQueryBuilder.filter(nested(propertyInstance, queryInstance));
             } else {
-                for (Query query : queryInstance.getQuery()) {
+                for (SuperQuery query : queryInstance.getQuery()) {
                     boolQueryBuilderFn(boolQueryBuilder, propertyInstance.getProperties().get(query.getKey()), query);
                 }
             }
@@ -49,7 +48,7 @@ public class BoolQueryBuilderFactory {
         return boolQueryBuilder;
     }
 
-    public static AbstractQueryBuilder boolQueryBuilderFn(BoolQueryBuilder boolQueryBuilder, PropertyInstance propertyInstance, Query query) throws Exception {
+    public static AbstractQueryBuilder boolQueryBuilderFn(BoolQueryBuilder boolQueryBuilder, PropertyInstance propertyInstance, SuperQuery query) throws Exception {
         AbstractQueryBuilder abstractQueryBuilder = queryBuilderFn(propertyInstance, query);
         switch (query.getBoolType()) {
             case FILTER:
@@ -68,42 +67,42 @@ public class BoolQueryBuilderFactory {
         return abstractQueryBuilder;
     }
 
-    public static AbstractQueryBuilder queryBuilderFn(PropertyInstance propertyInstance, Query query) throws Exception {
+    public static AbstractQueryBuilder queryBuilderFn(PropertyInstance propertyInstance, SuperQuery query) throws Exception {
         switch (propertyInstance.getQueryType()) {
             case KEYWORD:
             case STRING:
-                return terms(propertyInstance, query);
+                return terms(propertyInstance, (TermQuery) query);
             case DATE:
             case LONG:
             case DOUBLE:
-                return range(propertyInstance, query);
+                return range(propertyInstance, (RangeQuery) query);
             case WILDCARD:
-                return wildcard(propertyInstance, query);
+                return wildcard(propertyInstance, (TermQuery) query);
             case GROUP:
-                return group(propertyInstance, query);
+                return group(propertyInstance, (GroupQuery) query);
             default:
                 throw new IllegalArgumentException(format("Type %s was not found", propertyInstance.getQueryType()));
         }
     }
 
-    public static RangeQueryBuilder range(PropertyInstance instance, Query query) throws Exception {
-        return QueryBuilderUtil.range(instance.getKey(), query.getRange());
+    public static RangeQueryBuilder range(PropertyInstance instance, RangeQuery query) throws Exception {
+        return QueryBuilderUtil.range(instance.getKey(), query.getValue());
     }
 
-    public static TermsQueryBuilder terms(PropertyInstance instance, Query query) throws Exception {
-        return QueryBuilderUtil.terms(instance.getKey(), query.getTerms());
+    public static TermsQueryBuilder terms(PropertyInstance instance, TermQuery query) throws Exception {
+        return QueryBuilderUtil.terms(instance.getKey(), query.getValue());
     }
 
-    public static BoolQueryBuilder wildcard(PropertyInstance instance, Query query) throws Exception {
+    public static BoolQueryBuilder wildcard(PropertyInstance instance, TermQuery query) throws Exception {
         BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery().minimumShouldMatch(1);
-        query.getTerms().forEach(element -> boolQueryBuilder.should(QueryBuilders.wildcardQuery(instance.getKey(), (String) element)));
+        query.getValue().forEach(element -> boolQueryBuilder.should(QueryBuilders.wildcardQuery(instance.getKey(), (String) element)));
         return boolQueryBuilder;
     }
 
 
-    public static AbstractQueryBuilder group(PropertyInstance instance, Query query) throws Exception {
+    public static AbstractQueryBuilder group(PropertyInstance instance, GroupQuery query) throws Exception {
         BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
-        for (Query element : query.getBucket()) {
+        for (SuperQuery element : query.getValue()) {
             BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery().filter(QueryBuilderUtil.term(instance.getKey(), element.getKey()));
             boolQueryBuilderFn(queryBuilder, instance.getNext(), element);
             boolQueryBuilder.should(queryBuilder);
@@ -115,7 +114,7 @@ public class BoolQueryBuilderFactory {
         BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
         BoolQueryBuilder mustNotBoolQuery = null;
         BoolQueryBuilder boolQuery = null;
-        for (Query query : queryInstance.getQuery()) {
+        for (SuperQuery query : queryInstance.getQuery()) {
             if (query.getBoolType() == QueryBoolEnum.MUST_NOT) {
                 query.setBoolType(QueryBoolEnum.FILTER);
                 if (Objects.isNull(mustNotBoolQuery)) {

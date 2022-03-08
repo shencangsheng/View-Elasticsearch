@@ -4,26 +4,26 @@
     "query": [
       {
         "key": "order_no",
-        "terms": [
+        "value": [
           "1",
           "2"
         ]
       },
       {
         "key": "order_create_date",
-        "range": {
+        "value": {
           "lt": 1646662680887
         }
       },
       {
         "key": "countries",
-        "bucket": [
+        "value": [
           {
             "key": "china",
-            "bucket": [
+            "value": [
               {
                 "key": "si_chuan",
-                "terms": [
+                "value": [
                   "cheng_du"
                 ]
               }
@@ -31,10 +31,10 @@
           },
           {
             "key": "USA",
-            "bucket": [
+            "value": [
               {
                 "key": "AL",
-                "terms": [
+                "value": [
                   "Birmingham"
                 ]
               }
@@ -44,7 +44,7 @@
       },
       {
         "key": "user_name",
-        "terms": [
+        "value": [
           "zhang*"
         ]
       }
@@ -55,7 +55,7 @@
     "query": [
       {
         "key": "type",
-        "terms": [
+        "value": [
           "cancel"
         ]
       }
