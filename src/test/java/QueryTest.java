@@ -31,8 +31,8 @@ import java.util.Map;
  * @since 1.0.0
  */
 public class QueryTest extends AbstractModuleInstance {
-    
-    
+
+
     public QueryTest() {
         this.modules = Map.of("template", new TemplatePropertyInstance(),
             "nested", new NestedPropertyInstance());

@@ -72,7 +72,7 @@ public class QueryDeserializer extends StdDeserializer<SuperQuery> {
                 superQuery = new GroupQuery();
                 value = Lists.newArrayListWithCapacity(valueJsonNode.size());
                 for (JsonNode element : valueJsonNode) {
-                    ((ObjectNode) element).putPOJO("property", property);
+                    ((ObjectNode) element).putPOJO("property", property.getNext());
                     ((List) value).add(ctxt.readTreeAsValue(element, SuperQuery.class));
                 }
                 break;
