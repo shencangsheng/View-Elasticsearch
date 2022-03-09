@@ -10,6 +10,9 @@
  */
 package com.shencangsheng.view.query.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.shencangsheng.view.annotation.ModuleInstanceAnnotation;
+import com.shencangsheng.view.module.TemplateModuleInstance;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +30,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ModuleInstanceAnnotation(moduleInstance = TemplateModuleInstance.class)
+@JsonDeserialize(using = QueryModuleDeserializer.class)
 public class QueryInstance {
     private String module;
     private List<SuperQuery> query;

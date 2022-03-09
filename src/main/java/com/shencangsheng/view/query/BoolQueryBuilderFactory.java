@@ -85,8 +85,12 @@ public class BoolQueryBuilderFactory {
         }
     }
 
-    public static RangeQueryBuilder range(PropertyInstance instance, RangeQuery query) throws Exception {
-        return QueryBuilderUtil.range(instance.getKey(), query.getValue());
+    public static BoolQueryBuilder range(PropertyInstance instance, RangeQuery query) throws Exception {
+        BoolQueryBuilder rangeQuery = QueryBuilders.boolQuery().minimumShouldMatch(1);
+        for (SuperRangeQuery element : query.getValue()) {
+            rangeQuery.should(QueryBuilderUtil.range(instance.getKey(), element));
+        }
+        return rangeQuery;
     }
 
     public static TermsQueryBuilder terms(PropertyInstance instance, TermQuery query) throws Exception {

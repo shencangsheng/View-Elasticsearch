@@ -11,9 +11,11 @@
       },
       {
         "key": "order_create_date",
-        "value": {
-          "lt": 1646662680887
-        }
+        "value": [
+          {
+            "lt": 1646662680887
+          }
+        ]
       },
       {
         "key": "countries",

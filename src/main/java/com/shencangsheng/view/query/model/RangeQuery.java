@@ -10,6 +10,8 @@
  */
 package com.shencangsheng.view.query.model;
 
+import java.util.List;
+
 /**
  * 〈一句话功能简述〉<br>
  * 〈〉
@@ -18,6 +20,6 @@ package com.shencangsheng.view.query.model;
  * @create 2022/3/8
  * @since 1.0.0
  */
-public class RangeQuery extends SuperQuery<SuperRangeQuery> {
+public class RangeQuery extends SuperQuery<List<SuperRangeQuery>> {
 
 }
