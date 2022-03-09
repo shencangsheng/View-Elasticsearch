@@ -36,6 +36,7 @@ public class TemplatePropertyInstance extends AbstractPropertyInstance {
         add("user_id", userIdPropertyInstance);
         add("user_name", new PropertyInstance("user_name", QueryPropertyEnum.WILDCARD));
         add("age", new PropertyInstance("age", QueryPropertyEnum.LONG));
+        add("number", new PropertyInstance("age", QueryPropertyEnum.DOUBLE));
         add("gender", new PropertyInstance("gender", QueryPropertyEnum.KEYWORD, userIdPropertyInstance).setAggregationType(AggregationPropertyEnum.TERMS_CARDINALITY));
     }
 }

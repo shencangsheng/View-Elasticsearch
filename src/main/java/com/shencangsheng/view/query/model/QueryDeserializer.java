@@ -61,11 +61,17 @@ public class QueryDeserializer extends StdDeserializer<SuperQuery> {
                 break;
             case DATE:
             case LONG:
+                superQuery = new RangeQuery();
+                value = Lists.newArrayListWithCapacity(valueJsonNode.size());
+                for (JsonNode element : valueJsonNode) {
+                    ((List) value).add(ctxt.readTreeAsValue(element, LongRangeQuery.class));
+                }
+                break;
             case DOUBLE:
                 superQuery = new RangeQuery();
                 value = Lists.newArrayListWithCapacity(valueJsonNode.size());
                 for (JsonNode element : valueJsonNode) {
-                    ((List) value).add(ctxt.readTreeAsValue(element, SuperRangeQuery.class));
+                    ((List) value).add(ctxt.readTreeAsValue(element, DoubleRangeQuery.class));
                 }
                 break;
             case GROUP:

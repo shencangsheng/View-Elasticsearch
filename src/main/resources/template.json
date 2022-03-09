@@ -18,6 +18,14 @@
         ]
       },
       {
+        "key": "number",
+        "value": [
+          {
+            "lt": 23.7
+          }
+        ]
+      },
+      {
         "key": "countries",
         "value": [
           {
