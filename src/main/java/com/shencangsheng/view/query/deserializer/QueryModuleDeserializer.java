@@ -8,10 +8,9 @@
  * <author>          <time>          <version>          <desc>
  * 作者姓名           修改时间           版本号              描述
  */
-package com.shencangsheng.view.query.model;
+package com.shencangsheng.view.query.deserializer;
 
 import cn.hutool.core.util.ReflectUtil;
-import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -22,6 +21,8 @@ import com.shencangsheng.view.annotation.ModuleInstanceAnnotation;
 import com.shencangsheng.view.mappings.AbstractPropertyInstance;
 import com.shencangsheng.view.mappings.PropertyInstance;
 import com.shencangsheng.view.module.AbstractModuleInstance;
+import com.shencangsheng.view.query.model.QueryInstance;
+import com.shencangsheng.view.query.model.SuperQuery;
 
 import java.io.IOException;
 import java.util.List;
@@ -46,7 +47,7 @@ public class QueryModuleDeserializer extends StdDeserializer<QueryInstance> {
     }
 
     @Override
-    public QueryInstance deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
+    public QueryInstance deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         QueryInstance queryInstance = new QueryInstance();
         JsonNode node = p.getCodec().readTree(p);
         String module = node.get("module").asText();

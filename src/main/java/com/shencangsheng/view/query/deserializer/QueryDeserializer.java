@@ -8,7 +8,7 @@
  * <author>          <time>          <version>          <desc>
  * 作者姓名           修改时间           版本号              描述
  */
-package com.shencangsheng.view.query.model;
+package com.shencangsheng.view.query.deserializer;
 
 import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.collect.Lists;
 import com.shencangsheng.view.mappings.PropertyInstance;
 import com.shencangsheng.view.mappings.enums.QueryBoolEnum;
+import com.shencangsheng.view.query.model.*;
 
 import java.io.IOException;
 import java.util.List;

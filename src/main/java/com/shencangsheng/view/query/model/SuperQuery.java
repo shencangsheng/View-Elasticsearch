@@ -12,6 +12,7 @@ package com.shencangsheng.view.query.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.shencangsheng.view.mappings.enums.QueryBoolEnum;
+import com.shencangsheng.view.query.deserializer.QueryDeserializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
