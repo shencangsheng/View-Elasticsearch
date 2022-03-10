@@ -27,6 +27,7 @@ jobs:
           -d "
           {
             \"tag_name\": \"${GITHUB_REF_NAME}\",
-            \"body\": \"# test\"
+            \"body\": \"# test\",
+            \"generate_release_notes\": true
           }
           "
