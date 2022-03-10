@@ -4,7 +4,8 @@ English | [简体中文](./i18n/README.zh-cn.md)
 
 Elasticsearch DSL is a Java application that uses JSON/SQL to quickly generate Elasticsearch DSL, including query, aggregation, charts, and other fast and flexible configuration implementation.
 
-[toc]{level: [2]}
+* [Run Dependencies](#Run Dependencies)
+* [Building from source](#Building from source)
 
 ## Run Dependencies
 
