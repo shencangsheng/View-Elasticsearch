@@ -21,13 +21,12 @@ jobs:
         run: mvn clean install
       - name: Create Release
         run: |
-          curl --request POST "${env.GITHUB_API_URL}/repos/projects/${env.GITHUB_REPOSITORY}/releases" \
+          curl --request POST "${GITHUB_API_URL}/repos/projects/${GITHUB_REPOSITORY}/releases" \
           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
           --header "Accept: application/vnd.github.v3+json" \
           -d "
           {
-            \"tag_name\": \"${env.GITHUB_REF_NAME}\",
+            \"tag_name\": \"${GITHUB_REF_NAME}\",
             \"body\": \"# test\"
           }
           "
-          --fail
