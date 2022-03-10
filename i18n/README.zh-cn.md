@@ -4,18 +4,12 @@
 
 使用JSON/SQL快速生成Elasticsearch DSL的Java程序，包含查询、聚合、图表等多种快速可灵活配置的实现。
 
-## Compile Dependencies
+[toc]{level: [2]}
 
-* maven:3.6.3-openjdk-11
-
-## Run Dependencies
+## 运行环境
 
 * openjdk-11
 
-## Supported Backends
+## 构建
 
-* Docker mode
-
-## Building from source
-
-uses `Maven` for its build system.
+uses `bash install.sh` for its build system.
