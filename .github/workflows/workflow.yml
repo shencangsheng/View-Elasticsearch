@@ -1,11 +1,16 @@
 on:
-  label:
-    types: [created]
+  push:
+    tags:
+      - v*
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Create Release
+        run: |
+          curl -fsSL -o changelog-echo.sh `wget -qO- -t1 -T2 "https://api.github.com/repos/shencangsheng/Git-Release-Workflow/releases/latest" | grep "browser_download_url" | grep 'changelog-echo.sh"' | head -n 1 | awk -F ': "' '{print $2}' | sed 's/\"//g;s/,//g;s/ //g'`
+          bash changelog-echo.sh >CHANGELOG.md
       - name: Set up JDK 11
         uses: actions/setup-java@v2
         with:
@@ -18,15 +23,41 @@ jobs:
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/pom.xml') }}
       - name: Build with Maven
         run: mvn clean install
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifact
+          path: |
+            View-Elasticsearch.jar
+            CHANGELOG.md
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download the artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: artifact
+          path: ./
       - name: Create Release
-        run: |
-          curl --request POST "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/releases" \
-          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-          --header "Accept: application/vnd.github.v3+json" \
-          -d "
-          {
-            \"tag_name\": \"${GITHUB_REF_NAME}\",
-            \"body\": \"# test\",
-            \"name\": \"${GITHUB_REF_NAME}\"
-          }
-          "
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+          body_path: CHANGELOG.md
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: View-Elasticsearch.jar
+          asset_name: View-Elasticsearch.jar
+          asset_content_type: application/octet-stream
+          
