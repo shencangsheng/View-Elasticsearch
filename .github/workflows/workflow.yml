@@ -28,7 +28,7 @@ jobs:
         with:
           name: artifact
           path: |
-            View-Elasticsearch.jar
+            target/View-Elasticsearch.jar
             CHANGELOG.md
   release:
     needs: build
@@ -57,7 +57,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: View-Elasticsearch.jar
+          asset_path: target/View-Elasticsearch.jar
           asset_name: View-Elasticsearch.jar
           asset_content_type: application/octet-stream
           
