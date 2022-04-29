@@ -8,7 +8,10 @@
  * <author>          <time>          <version>          <desc>
  * 作者姓名           修改时间           版本号              描述
  */
-package com.shencangsheng.view.module;
+package com.shencangsheng.view.module.query;
+
+import com.shencangsheng.view.property.query.NestedQueryPropertyInstance;
+import com.shencangsheng.view.property.query.TemplateQueryPropertyInstance;
 
 import java.util.Map;
 
@@ -23,7 +26,9 @@ import java.util.Map;
 public class TemplateModuleInstance extends AbstractModuleInstance {
 
     public TemplateModuleInstance() {
-        this.modules = Map.of("template", new TemplatePropertyInstance(),
-            "nested", new NestedPropertyInstance());
+        this.modules = Map.of(
+            "template", new TemplateQueryPropertyInstance(),
+            "nested", new NestedQueryPropertyInstance()
+        );
     }
 }

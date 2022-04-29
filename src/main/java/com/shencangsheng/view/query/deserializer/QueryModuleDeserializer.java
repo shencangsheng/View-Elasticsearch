@@ -20,7 +20,7 @@ import com.google.common.collect.Lists;
 import com.shencangsheng.view.annotation.ModuleInstanceAnnotation;
 import com.shencangsheng.view.mappings.AbstractPropertyInstance;
 import com.shencangsheng.view.mappings.PropertyInstance;
-import com.shencangsheng.view.module.AbstractModuleInstance;
+import com.shencangsheng.view.module.query.AbstractModuleInstance;
 import com.shencangsheng.view.query.model.QueryInstance;
 import com.shencangsheng.view.query.model.SuperQuery;
 

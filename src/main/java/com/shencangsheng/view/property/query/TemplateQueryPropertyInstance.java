@@ -8,11 +8,10 @@
  * <author>          <time>          <version>          <desc>
  * 作者姓名           修改时间           版本号              描述
  */
-package com.shencangsheng.view.module;
+package com.shencangsheng.view.property.query;
 
 import com.shencangsheng.view.mappings.AbstractPropertyInstance;
 import com.shencangsheng.view.mappings.PropertyInstance;
-import com.shencangsheng.view.mappings.enums.AggregationPropertyEnum;
 import com.shencangsheng.view.mappings.enums.QueryPropertyEnum;
 
 /**
@@ -23,20 +22,18 @@ import com.shencangsheng.view.mappings.enums.QueryPropertyEnum;
  * @create 2022/3/7
  * @since 1.0.0
  */
-public class TemplatePropertyInstance extends AbstractPropertyInstance {
+public class TemplateQueryPropertyInstance extends AbstractPropertyInstance {
 
-    public TemplatePropertyInstance() {
+    public TemplateQueryPropertyInstance() {
         add("order_no", new PropertyInstance("order_no", QueryPropertyEnum.STRING));
         add("order_create_date", new PropertyInstance("order_create_date", QueryPropertyEnum.DATE));
         add("countries", new PropertyInstance("countries", QueryPropertyEnum.GROUP,
             new PropertyInstance("city", QueryPropertyEnum.GROUP,
                 new PropertyInstance("provinces", QueryPropertyEnum.KEYWORD))));
 
-        PropertyInstance userIdPropertyInstance = new PropertyInstance("user_id", AggregationPropertyEnum.CARDINALITY);
-        add("user_id", userIdPropertyInstance);
         add("user_name", new PropertyInstance("user_name", QueryPropertyEnum.WILDCARD));
         add("age", new PropertyInstance("age", QueryPropertyEnum.LONG));
         add("number", new PropertyInstance("age", QueryPropertyEnum.DOUBLE));
-        add("gender", new PropertyInstance("gender", QueryPropertyEnum.KEYWORD, userIdPropertyInstance).setAggregationType(AggregationPropertyEnum.TERMS_CARDINALITY));
+        add("gender", new PropertyInstance("gender", QueryPropertyEnum.KEYWORD));
     }
 }

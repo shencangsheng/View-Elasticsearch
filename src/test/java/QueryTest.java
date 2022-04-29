@@ -12,11 +12,12 @@
 import cn.hutool.core.io.file.FileReader;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.shencangsheng.view.module.TemplateModuleInstance;
+import com.shencangsheng.view.module.query.TemplateModuleInstance;
 import com.shencangsheng.view.query.BoolQueryBuilderFactory;
 import com.shencangsheng.view.query.model.QueryInstance;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,6 +35,7 @@ public class QueryTest {
         FileReader templateJson = new FileReader("template.json");
         String queryJson = templateJson.readString();
         ObjectMapper objectMapper = new ObjectMapper();
+        
         List<QueryInstance> queryInstances = objectMapper.readValue(queryJson, new TypeReference<>() {
         });
         BoolQueryBuilder boolQueryBuilder = BoolQueryBuilderFactory.boolQueryBuilderFactory(queryInstances, new TemplateModuleInstance());

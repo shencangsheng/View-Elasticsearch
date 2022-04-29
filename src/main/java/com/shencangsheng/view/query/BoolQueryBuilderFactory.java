@@ -13,7 +13,7 @@ package com.shencangsheng.view.query;
 import com.shencangsheng.view.mappings.AbstractPropertyInstance;
 import com.shencangsheng.view.mappings.PropertyInstance;
 import com.shencangsheng.view.mappings.enums.QueryBoolEnum;
-import com.shencangsheng.view.module.AbstractModuleInstance;
+import com.shencangsheng.view.module.query.AbstractModuleInstance;
 import com.shencangsheng.view.query.model.*;
 import org.apache.lucene.search.join.ScoreMode;
 import org.elasticsearch.index.query.*;

@@ -8,7 +8,7 @@
  * <author>          <time>          <version>          <desc>
  * 作者姓名           修改时间           版本号              描述
  */
-package com.shencangsheng.view.module;
+package com.shencangsheng.view.property.query;
 
 import com.shencangsheng.view.mappings.AbstractPropertyInstance;
 import com.shencangsheng.view.mappings.PropertyInstance;
@@ -22,8 +22,8 @@ import com.shencangsheng.view.mappings.enums.QueryPropertyEnum;
  * @create 2022/3/7
  * @since 1.0.0
  */
-public class NestedPropertyInstance extends AbstractPropertyInstance {
-    public NestedPropertyInstance() {
+public class NestedQueryPropertyInstance extends AbstractPropertyInstance {
+    public NestedQueryPropertyInstance() {
         setNested("state");
         add("create_date", new PropertyInstance("create_date", QueryPropertyEnum.DATE));
         add("type", new PropertyInstance("type", QueryPropertyEnum.KEYWORD));

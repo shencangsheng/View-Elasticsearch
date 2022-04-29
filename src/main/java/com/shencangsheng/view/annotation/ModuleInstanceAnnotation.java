@@ -10,7 +10,7 @@
  */
 package com.shencangsheng.view.annotation;
 
-import com.shencangsheng.view.module.AbstractModuleInstance;
+import com.shencangsheng.view.module.query.AbstractModuleInstance;
 
 import java.lang.annotation.*;
 

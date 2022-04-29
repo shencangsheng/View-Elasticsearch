@@ -12,7 +12,7 @@ package com.shencangsheng.view.query.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.shencangsheng.view.annotation.ModuleInstanceAnnotation;
-import com.shencangsheng.view.module.TemplateModuleInstance;
+import com.shencangsheng.view.module.query.TemplateModuleInstance;
 import com.shencangsheng.view.query.deserializer.QueryModuleDeserializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;

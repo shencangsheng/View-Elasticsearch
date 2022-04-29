@@ -14,6 +14,7 @@ import com.shencangsheng.view.mappings.enums.AggregationPropertyEnum;
 import com.shencangsheng.view.mappings.enums.QueryPropertyEnum;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -24,24 +25,19 @@ import lombok.Setter;
  * @since 1.0.0
  */
 @Getter
+@Accessors(chain = true)
 public class PropertyInstance {
     @Setter
     private String key;
     private QueryPropertyEnum queryType;
-    private AggregationPropertyEnum aggregationType;
+
     private Integer minimumShouldMatch = 1;
     @Setter
     private PropertyInstance next;
 
-    public PropertyInstance(String key, AggregationPropertyEnum aggregationType) {
-        this.key = key;
-        this.aggregationType = aggregationType;
-    }
-
     public PropertyInstance(String key, QueryPropertyEnum type) {
         this.key = key;
         this.queryType = type;
-        this.aggregationType = type.getAggregationProperty();
     }
 
     public PropertyInstance(String key, QueryPropertyEnum type, PropertyInstance next) {
@@ -49,8 +45,4 @@ public class PropertyInstance {
         this.next = next;
     }
 
-    public PropertyInstance setAggregationType(AggregationPropertyEnum aggregationType) {
-        this.aggregationType = aggregationType;
-        return this;
-    }
 }
