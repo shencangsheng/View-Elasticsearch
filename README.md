@@ -13,4 +13,4 @@ Elasticsearch DSL is a Java application that uses JSON/SQL to quickly generate E
 
 ## Building from source
 
-uses `bash install.sh` for its build system.
+uses `bash run.sh` for its build system.
