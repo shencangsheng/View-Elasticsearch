@@ -13,4 +13,4 @@
 
 ## 构建
 
-uses `bash install.sh` for its build system.
+uses `bash run.sh` for its build system.
